@@ -1,7 +1,8 @@
-package com.example.infotechassignment.gmail_and_fb_integration;
+package com.example.infotechassignment.gmail_and_fb_integration.gmail_Integration;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 
-public class GmailAndFbIntegrationActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class GmailIntegrationActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private LinearLayout prof_section;
     private Button Signout;
@@ -35,17 +36,10 @@ public class GmailAndFbIntegrationActivity extends AppCompatActivity implements 
     private GoogleApiClient googleApiClient;
     private  static final int REQ_CODE=9001;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gmail_and_fb_integration);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle("");
-        }
 
         prof_section=(LinearLayout) findViewById(R.id.prof_section);
         Signout=(Button) findViewById(R.id.btn_logout);
@@ -55,13 +49,13 @@ public class GmailAndFbIntegrationActivity extends AppCompatActivity implements 
         Pro_pic=(ImageView) findViewById(R.id.pro_pic);
         Signin.setOnClickListener(this);
         Signout.setOnClickListener(this);
-       // prof_section.setVisibility(View.GONE);
+        prof_section.setVisibility(View.GONE);
         GoogleSignInOptions googleSignInOptions=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient=new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
 
+
     }
 
-    @Override
     public void onClick(View view) {
 
         switch (view.getId()){
@@ -83,9 +77,10 @@ public class GmailAndFbIntegrationActivity extends AppCompatActivity implements 
     }
 
 
+
     private  void signin(){
 
-        Intent intent= Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+        Intent intent=Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(intent,REQ_CODE);
 
     }
@@ -145,5 +140,6 @@ public class GmailAndFbIntegrationActivity extends AppCompatActivity implements 
         }
 
     }
+
 
 }

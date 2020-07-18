@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".gmail_and_fb_integration.GmailAndFbIntegrationActivity">
+    tools:context=".gmail_and_fb_integration.gmail_Integration.GmailIntegrationActivity">
 
     <LinearLayout
         android:id="@+id/prof_section"
