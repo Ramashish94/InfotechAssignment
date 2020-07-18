@@ -55,7 +55,7 @@ public class GmailAndFbIntegrationActivity extends AppCompatActivity implements 
         Pro_pic=(ImageView) findViewById(R.id.pro_pic);
         Signin.setOnClickListener(this);
         Signout.setOnClickListener(this);
-        prof_section.setVisibility(View.GONE);
+       // prof_section.setVisibility(View.GONE);
         GoogleSignInOptions googleSignInOptions=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient=new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
 
