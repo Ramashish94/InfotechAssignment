@@ -5,12 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -30,10 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
-public class MainActivity extends AppCompatActivity {
+public class JsonParsingActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     String email_id = "interview@maishainfotech.com";
     AssignmentAdapter assignmentAdapter;
@@ -55,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle("");
+        }
+
         recyclerView = findViewById(R.id.recycDetails);
         assignmentAdapter = new AssignmentAdapter(assignmentResp, getApplicationContext()); // as you want you dec or nor
 
@@ -101,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     } else {
-                        Toast.makeText(MainActivity.this, "response failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JsonParsingActivity.this, "response failed", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AssignmentResp> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JsonParsingActivity.this, "Failure", Toast.LENGTH_SHORT).show();
                 }
             });
 
