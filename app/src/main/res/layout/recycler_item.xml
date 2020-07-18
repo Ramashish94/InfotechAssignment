@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/_10sdp">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp">
 
 
     <TableLayout
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="5dp"
-                android:text="Contact Number"
+                android:text="Contact N0"
                 android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
 
             <TextView

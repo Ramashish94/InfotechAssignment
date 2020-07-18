@@ -10,24 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infotechassignment.R;
-import com.example.infotechassignment.activity.MainActivity;
 import com.example.infotechassignment.model.AssignmentResp;
 import com.example.infotechassignment.model.Response;
 
-import java.util.List;
 
 public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.MyViewHolder> {
-    List<AssignmentResp> assignmentRespList;
-    List<Response> responseList;
     Context context;
     AssignmentResp assignmentResp;
-
-//    public AssignmentAdapter(List<Response> responseList,Context context1) {
-//        this.responseList=responseList;
-//        this.context = context1;
-//
-//    }
-
 
     public AssignmentAdapter(AssignmentResp assignmentResp1, Context context1) {
         this.assignmentResp = assignmentResp1;

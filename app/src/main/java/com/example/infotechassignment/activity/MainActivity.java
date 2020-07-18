@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycDetails);
-        assignmentAdapter = new AssignmentAdapter(assignmentResp, getApplicationContext());
+        assignmentAdapter = new AssignmentAdapter(assignmentResp, getApplicationContext()); // as you want you dec or nor
 
         onService();
-        shoDetailsRV();
+
 //        gpsTrackingWithOutServiceClass();
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
@@ -89,8 +89,15 @@ public class MainActivity extends AppCompatActivity {
                         if (response.body().getResponse() != null) {
                             if (response.body().getResponse().size() > 0) {
                                 assignmentResp = response.body();
-                                assignmentAdapter.setData(assignmentResp);
+
+                                assignmentAdapter = new AssignmentAdapter(assignmentResp, getApplicationContext());
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                                recyclerView.setLayoutManager(layoutManager);
+                                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                recyclerView.setAdapter(assignmentAdapter);
+
                                 assignmentAdapter.notifyDataSetChanged();
+
                             }
                         }
                     } else {
@@ -106,14 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-    }
-
-    private void shoDetailsRV() {
-        assignmentAdapter = new AssignmentAdapter(assignmentResp, getApplicationContext());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(assignmentAdapter);
     }
 
 
