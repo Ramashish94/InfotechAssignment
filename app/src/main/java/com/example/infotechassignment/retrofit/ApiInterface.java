@@ -1,18 +1,16 @@
 package com.example.infotechassignment.retrofit;
 
-import com.example.infotechassignment.model.AssignmentResp;
+import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResp;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Part;
 
 public interface ApiInterface {
 
-    @Multipart
-    @POST("https://www.maishainfotech.com/adinterview/interview.php")
-    Call<AssignmentResp>ASSIGNMENT_RESP_CALL(@Part("email_id") RequestBody email_id);
-
+    @GET("https://demoapp.bentchair.com/api/v1/bent-basic-home")
+    Call<BentBasicHomeResp>BENT_BASIC_HOME_RESP_CALL(@Header("ApiToken") RequestBody ApiToken);
 
 }

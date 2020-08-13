@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.infotechassignment">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="InfotectQuestion1_2"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".gmail_and_fb_integration.faceboob_Integration.FacebookIntegrationActivity"></activity>
+        <activity android:name=".gmail_and_fb_integration.faceboob_Integration.FacebookIntegrationActivity" />
         <activity
             android:name=".gmail_and_fb_integration.gmail_Integration.GmailIntegrationActivity"
             android:screenOrientation="portrait"
@@ -19,7 +21,8 @@
             android:name=".activity.JsonParsingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
-        <activity android:name=".activity.TaskPerformActivity">
+        <activity android:name=".activity.TaskPerformActivity"/>
+            <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

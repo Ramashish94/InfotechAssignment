@@ -29,14 +29,14 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            buildConfigField "String", "API_SERVER_IP", "\"https://www.maishainfotech.com/adinterview/interview.php/\""
+            buildConfigField "String", "API_SERVER_IP", "\"https://demoapp.bentchair.com/api/v1/bent-basic-home/\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             minifyEnabled false
             multiDexEnabled true
-            buildConfigField "String", "API_SERVER_IP", "\"https://www.maishainfotech.com/adinterview/interview.php/\""
+            buildConfigField "String", "API_SERVER_IP", "\"https://demoapp.bentchair.com/api/v1/bent-basic-home/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
