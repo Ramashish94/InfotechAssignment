@@ -12,15 +12,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infotechassignment.R;
 import com.example.infotechassignment.mainwork.modelnew.Addition;
-import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResp;
+import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResponse;
+import com.example.infotechassignment.mainwork.modelnew.Category;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class AdditionAdapter extends RecyclerView.Adapter<AdditionAdapter.ViewHolder> {
     Context context;
-    BentBasicHomeResp bentBasicHomeResp;
+    BentBasicHomeResponse bentBasicHomeResponse;
+    List<Addition>additions;
+    List<Category>categories;
 
-    public AdditionAdapter(BentBasicHomeResp bentBasicHomeResp,Context context){
+    public AdditionAdapter(BentBasicHomeResponse bentBasicHomeResponse, Context context, List<Addition>additions){
         this.context = context;
-        this.bentBasicHomeResp = bentBasicHomeResp;
+        this.bentBasicHomeResponse = bentBasicHomeResponse;
+        this.additions=additions;
+    }
+
+    public AdditionAdapter(Context applicationContext, List<Addition> additions,List<Category>categories) {
+        this.context = applicationContext;
+        this.additions=additions;
+        this.categories = categories;
+
     }
 
     @NonNull
@@ -33,13 +47,21 @@ public class AdditionAdapter extends RecyclerView.Adapter<AdditionAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Addition addition = bentBasicHomeResp.getAddition().getCategories().get(position);
+        Addition addition = bentBasicHomeResponse.getAddition().getCategories().get(position);
         holder.tvAdditionName.setText(""+addition.getTitle());
+        Category category = bentBasicHomeResponse.getAddition().getCategories().get(position);
+        Picasso.with(context).load(category.getImage()).into(holder.ivAddition);
+
+
     }
 
     @Override
     public int getItemCount() {
-        return R.layout.item_addition;
+        if (additions.size()>0){
+        }else {
+            return 0;
+        }
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

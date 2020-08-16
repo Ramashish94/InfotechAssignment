@@ -1,9 +1,5 @@
 package com.example.infotechassignment.retrofit;
 
-import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResp;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.RequestBody;
-
 public class RestClient {
     private static final String TAG = "RestClient";
 

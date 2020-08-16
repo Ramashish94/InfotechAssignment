@@ -2,7 +2,6 @@ package com.example.infotechassignment.mainwork;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.RadialGradient;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +16,30 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infotechassignment.R;
-import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResp;
+import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResponse;
+import com.example.infotechassignment.mainwork.modelnew.Category;
 import com.example.infotechassignment.mainwork.modelnew.Product;
 import com.example.infotechassignment.mainwork.modelnew.Section;
+import com.squareup.picasso.Picasso;
 
-public class SelectionAdapter extends RecyclerView.Adapter<SelectionAdapter.MyViewHolder> {
+import java.util.List;
+
+public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHolder> {
     Context context;
-    BentBasicHomeResp bentBasicHomeResp;
+    BentBasicHomeResponse bentBasicHomeResponse;
+    List<Section>sections;
+    List<Product>products;
 
-    public SelectionAdapter(BentBasicHomeResp bentBasicHomeResp, Context context) {
+    public SectionAdapter(BentBasicHomeResponse bentBasicHomeResponse, Context context) {
         this.context = context;
-        this.bentBasicHomeResp = bentBasicHomeResp;
+        this.bentBasicHomeResponse = bentBasicHomeResponse;
+    }
+
+    public SectionAdapter(Context applicationContext, List<Section>sections,List<Product>products) {
+        this.context = applicationContext;
+        this.sections=sections;
+        this.products = products;
+
     }
 
     @NonNull
@@ -41,12 +53,12 @@ public class SelectionAdapter extends RecyclerView.Adapter<SelectionAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Section section = bentBasicHomeResp.getSections().get(position);
+        Section section = bentBasicHomeResponse.getSections().get(position);
         holder.tvSectionName.setText("" + section.getName());
+        Product product = bentBasicHomeResponse.getSections().get(position);
         holder.rdBtnLivingRoom.setText("" + section.getTitle());
         holder.rdBtnDiningRoom.setText("" + section.getTitle());
         holder.rdBtnBedRoom.setText("" + section.getTitle());
-
 
         holder.radioGrpChecked.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -58,6 +70,8 @@ public class SelectionAdapter extends RecyclerView.Adapter<SelectionAdapter.MyVi
                             holder.rdBtnLivingRoom.setTextColor(Color.WHITE);
                             holder.rdBtnDiningRoom.setTextColor(Color.GRAY);
                             holder.rdBtnBedRoom.setTextColor(Color.GRAY);
+                            Picasso.with(context).load(section.getImage()).into(holder.ivForLivingDiningBedRoom);
+
                         }
                         break;
                     case R.id.rdBtnDiningRoom:
@@ -65,6 +79,8 @@ public class SelectionAdapter extends RecyclerView.Adapter<SelectionAdapter.MyVi
                             holder.rdBtnLivingRoom.setTextColor(Color.GRAY);
                             holder.rdBtnDiningRoom.setTextColor(Color.WHITE);
                             holder.rdBtnBedRoom.setTextColor(Color.GRAY);
+                            Picasso.with(context).load(section.getImage()).into(holder.ivForLivingDiningBedRoom);
+
                         }
                         break;
                     case R.id.rdBtnBedRoom:
@@ -72,12 +88,12 @@ public class SelectionAdapter extends RecyclerView.Adapter<SelectionAdapter.MyVi
                             holder.rdBtnLivingRoom.setTextColor(Color.GRAY);
                             holder.rdBtnDiningRoom.setTextColor(Color.GRAY);
                             holder.rdBtnBedRoom.setTextColor(Color.WHITE);
+                            Picasso.with(context).load(section.getImage()).into(holder.ivForLivingDiningBedRoom);
+
                         }
                         break;
                 }
             }
-
-
         });
 
     }
