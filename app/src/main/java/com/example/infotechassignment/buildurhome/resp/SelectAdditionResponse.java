@@ -1,10 +1,9 @@
 
 package com.example.infotechassignment.buildurhome.resp;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class SelectAdditionResponse {
 
@@ -55,12 +54,23 @@ public class SelectAdditionResponse {
 
     public static class Category {
 
+        @SerializedName("category_id")
+        @Expose
+        private Integer categoryId;
         @SerializedName("name")
         @Expose
         private String name;
         @SerializedName("products")
         @Expose
         private List<Product> products = null;
+
+        public Integer getCategoryId() {
+            return categoryId;
+        }
+
+        public void setCategoryId(Integer categoryId) {
+            this.categoryId = categoryId;
+        }
 
         public String getName() {
             return name;

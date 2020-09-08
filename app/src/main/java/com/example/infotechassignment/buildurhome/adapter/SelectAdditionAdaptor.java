@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdditionCategoryAdaptor extends RecyclerView.Adapter<AdditionCategoryAdaptor.AditionViewHolder> {
+public class SelectAdditionAdaptor extends RecyclerView.Adapter<SelectAdditionAdaptor.AditionViewHolder> {
 
     BasicProductResponse basicProductResponse;
     Context context;
@@ -31,7 +31,7 @@ public class AdditionCategoryAdaptor extends RecyclerView.Adapter<AdditionCatego
 //        this.categoryList = categoryList;
 //    }
 
-    public AdditionCategoryAdaptor(Context context, List<SelectAdditionResponse.Product> productList) {
+    public SelectAdditionAdaptor(Context context, List<SelectAdditionResponse.Product> productList) {
         this.context = context;
         this.productList = productList;
     }

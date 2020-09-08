@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.infotechassignment.R;
-import com.example.infotechassignment.buildurhome.adapter.AdditionCategoryAdaptor;
+import com.example.infotechassignment.buildurhome.adapter.SelectAdditionAdaptor;
 import com.example.infotechassignment.buildurhome.adapter.ProductAdapter;
 import com.example.infotechassignment.buildurhome.resp.BasicProductResponse;
 import com.example.infotechassignment.buildurhome.resp.SelectAdditionResponse;
@@ -43,7 +43,7 @@ public class BuildUrHomeActivity extends AppCompatActivity {
     private int indexPosition;
     BasicProductResponse basicProductResponse;
     SelectAdditionResponse selectAdditionResponse;
-    AdditionCategoryAdaptor additionCategoryAdaptor;
+    SelectAdditionAdaptor selectAdditionAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,6 @@ public class BuildUrHomeActivity extends AppCompatActivity {
 
         onProductService();
         setBasicProductAdapter();
-        onAdditionService();
         setSelectAdditionAdapter();
         //setBasicAdditionAdapter();
     }
@@ -139,7 +138,7 @@ public class BuildUrHomeActivity extends AppCompatActivity {
                     setAdditionResponse(selectAdditionResponse);
                     setAdditionTittle(selectAdditionResponse);
                     setNotifyAdditionAdapter(selectAdditionResponse.getCategories().get(indexPosition).getProducts());
-                    //setNotifyBasicAdditionAdapter(selectAdditionResponse.getCategories());
+//                    setNotifyBasicAdditionAdapter(selectAdditionResponse.getCategories().get(indexPosition).getCategoryId());
                 } else {
                     Toast.makeText(getApplicationContext(), "response failed", Toast.LENGTH_SHORT).show();
                 }
@@ -153,10 +152,11 @@ public class BuildUrHomeActivity extends AppCompatActivity {
     }
 
     private void setAdditionTittle(SelectAdditionResponse selectAdditionResponse) {
-        if (selectAdditionResponse!=null){
+        if (selectAdditionResponse != null) {
             tvSelectUrAddition.setText(selectAdditionResponse.getTitle());
         }
     }
+
     private void setAdditionResponse(SelectAdditionResponse selectAdditionResponse) {
         if (selectAdditionResponse != null && selectAdditionResponse.getCategories().size() > 0) {
             rdGrpChecked.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -171,6 +171,7 @@ public class BuildUrHomeActivity extends AppCompatActivity {
                             rdBtnLights.setTextColor(Color.GRAY);
 //                            rdBtnFurnitureAddition.setText(selectAdditionResponse.getCategories().get(indexPosition).getName());
 //                            setBasicAdditionAdapter(selectAdditionResponse);
+                            onAdditionService();
                             setSelectAdditionAdapter();
                             break;
 
@@ -181,6 +182,7 @@ public class BuildUrHomeActivity extends AppCompatActivity {
                             rdBtnArtWork.setTextColor(Color.GRAY);
                             rdBtnLights.setTextColor(Color.GRAY);
 //                            rdBtnRugs.setText(selectAdditionResponse.getCategories().get(indexPosition).getName());
+                            onAdditionService();
                             setSelectAdditionAdapter();
                             break;
 
@@ -191,6 +193,7 @@ public class BuildUrHomeActivity extends AppCompatActivity {
                             rdBtnRugs.setTextColor(Color.GRAY);
                             rdBtnLights.setTextColor(Color.GRAY);
 //                            rdBtnArtWork.setText(selectAdditionResponse.getCategories().get(indexPosition).getName());
+                            onAdditionService();
                             setSelectAdditionAdapter();
                             break;
                         case R.id.rdBtnLights:
@@ -200,6 +203,7 @@ public class BuildUrHomeActivity extends AppCompatActivity {
                             rdBtnRugs.setTextColor(Color.GRAY);
                             rdBtnArtWork.setTextColor(Color.GRAY);
 //                            rdBtnLights.setText(selectAdditionResponse.getCategories().get(indexPosition).getName());
+                            onAdditionService();
                             setSelectAdditionAdapter();
                             break;
                     }
@@ -209,19 +213,29 @@ public class BuildUrHomeActivity extends AppCompatActivity {
     }
 
     private void setSelectAdditionAdapter() {
-        additionCategoryAdaptor = new AdditionCategoryAdaptor(getApplicationContext(), additionProductList);
+        selectAdditionAdaptor = new SelectAdditionAdaptor(getApplicationContext(), additionProductList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvSelectUrAddition.setLayoutManager(layoutManager);
         rvSelectUrAddition.setItemAnimator(new DefaultItemAnimator());
-        rvSelectUrAddition.setAdapter(additionCategoryAdaptor);
+        rvSelectUrAddition.setAdapter(selectAdditionAdaptor);
     }
 
     private void setNotifyAdditionAdapter(List<SelectAdditionResponse.Product> products) {
         additionProductList.clear();
         additionProductList.addAll(products);
         if (additionProductList != null && additionProductList.size() > 0) {
-            additionCategoryAdaptor.notifyDataSetChanged();
+            selectAdditionAdaptor.notifyDataSetChanged();
         }
+    }
+
+    private void setNotifyBasicAdditionAdapter(Integer categoryId) {
+        if (categoryId != null) {
+            additionProductList.clear();
+            if (additionProductList != null && additionProductList.size() > 0) {
+                selectAdditionAdaptor.notifyDataSetChanged();
+            }
+        }
+
     }
 
 //    private void setBasicAdditionAdapter() {
