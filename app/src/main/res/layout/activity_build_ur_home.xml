@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".buildurhome.BuildUrHomeActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:ignore="MissingConstraints,NotSibling">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+
+            <ImageView
+                android:id="@+id/ivBentBasicBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:fitsSystemWindows="true"
+                android:src="@drawable/img_default_banner"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tvBuildUrHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:text="@string/build_ur_own_basic_home"
+                android:textAllCaps="true"
+                android:textColor="@color/quantum_black_100"
+                android:textSize="20dp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@+id/ivBentBasicBanner"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+
+            <TextView
+                android:id="@+id/tvBuildYourHomeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:text="@string/build_ur_own_basic_home_text"
+                android:textColor="@color/quantum_black_100"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@+id/tvBuildUrHome"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clLivingRoom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                app:layout_constraintTop_toBottomOf="@+id/tvBuildYourHomeTxt">
+
+                <TextView
+                    android:id="@+id/tvChooseRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Choose Your Living Room"
+                    android:textColor="@color/quantum_black_100"
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    tools:ignore="MissingConstraints,RtlHardcoded,RtlSymmetry" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvForChooseSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvChooseRoom" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clBentBasicAddition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:paddingBottom="?attr/actionBarSize"
+                app:layout_constraintTop_toBottomOf="@+id/clLivingRoom">
+
+                <TextView
+                    android:id="@+id/tvSelectUrAddition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Bent Basic Addition Title "
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:textSize="20dp"
+                    tools:ignore="MissingConstraints,RtlHardcoded,RtlSymmetry" />
+
+                <HorizontalScrollView
+                    android:id="@+id/hsvRadiogroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:fadingEdge="none"
+                    android:overScrollMode="never"
+                    android:padding="5dp"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectUrAddition"
+                    tools:ignore="MissingConstraints">
+
+                    <RadioGroup
+                        android:id="@+id/rdGrpChecked"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/colorWhite"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rdBtnFurnitureAddition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="?attr/actionBarSize"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/radio_button_bent_basic_furniture_addition_selector"
+                            android:button="@color/colorTransparent"
+                            android:checked="true"
+                            android:elevation="10dp"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="8dp"
+                            android:selectAllOnFocus="true"
+                            android:text="Bent basic Furniture addition"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorWhite"
+                            android:textIsSelectable="true" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rdBtnRugs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="?attr/actionBarSize"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/radio_button_at_work_selector"
+                            android:button="@color/colorTransparent"
+                            android:checked="false"
+                            android:elevation="10dp"
+                            android:gravity="center"
+                            android:paddingLeft="30dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="30dp"
+                            android:paddingBottom="10dp"
+                            android:text="Rugs"
+                            android:textColor="@color/black" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rdBtnArtWork"
+                            android:layout_width="wrap_content"
+                            android:layout_height="?attr/actionBarSize"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/radio_button_at_work_selector"
+                            android:button="@color/colorTransparent"
+                            android:checked="false"
+                            android:elevation="10dp"
+                            android:gravity="center"
+                            android:paddingLeft="30dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="30dp"
+                            android:paddingBottom="10dp"
+                            android:text="ArtWork"
+                            android:textColor="@color/black" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rdBtnLights"
+                            android:layout_width="wrap_content"
+                            android:layout_height="?attr/actionBarSize"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/radio_button_light_selector"
+                            android:button="@color/colorTransparent"
+                            android:checked="false"
+                            android:elevation="10dp"
+                            android:gravity="center"
+                            android:paddingLeft="30dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="30dp"
+                            android:paddingBottom="10dp"
+                            android:text="Lights"
+                            android:textColor="@color/black" />
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSelectUrAddition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintTop_toBottomOf="@+id/hsvRadiogroup"
+                    tools:ignore="UnknownId"
+                    tools:layout_editor_absoluteX="-194dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

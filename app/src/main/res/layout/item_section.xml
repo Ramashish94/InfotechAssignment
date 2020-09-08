@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
 
@@ -111,8 +111,9 @@
                         <ImageView
                             android:id="@+id/ivForLivingDiningBedRoom"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_120sdp"
                             android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
                             android:src="@drawable/img_default_banner"
                             android:visibility="visible"
                             tools:ignore="ContentDescription" />

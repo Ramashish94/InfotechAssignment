@@ -65,7 +65,7 @@
                         android:paddingLeft="5dp"
                         android:text="The COVID-19 pandemic has affected our economic situation to a great extent. Looking at the current scenario, Bent Chair has launched the Bent Basic collection, a range of home essentials that brings together a selection of different interior styles to help you create a home that's both stylish and pocket friendly."
                         android:textAllCaps="true"
-                        android:textColor="@color/browser_actions_bg_grey"
+                        android:textColor="@color/quantum_black_100"
                         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                     <Button

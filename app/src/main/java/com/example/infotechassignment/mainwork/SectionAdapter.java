@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infotechassignment.R;
 import com.example.infotechassignment.mainwork.modelnew.BentBasicHomeResponse;
-import com.example.infotechassignment.mainwork.modelnew.Category;
 import com.example.infotechassignment.mainwork.modelnew.Product;
 import com.example.infotechassignment.mainwork.modelnew.Section;
 import com.squareup.picasso.Picasso;
@@ -35,7 +34,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
         this.bentBasicHomeResponse = bentBasicHomeResponse;
     }
 
-    public SectionAdapter(Context applicationContext, List<Section>sections,List<Product>products) {
+    public SectionAdapter(Context applicationContext, List<Section>sections,List<Product> products) {
         this.context = applicationContext;
         this.sections=sections;
         this.products = products;
@@ -55,10 +54,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
 
         Section section = bentBasicHomeResponse.getSections().get(position);
         holder.tvSectionName.setText("" + section.getName());
-        Product product = bentBasicHomeResponse.getSections().get(position);
-        holder.rdBtnLivingRoom.setText("" + section.getTitle());
-        holder.rdBtnDiningRoom.setText("" + section.getTitle());
-        holder.rdBtnBedRoom.setText("" + section.getTitle());
+        List<Product> product=section.getProducts();
+        holder.rdBtnLivingRoom.setText("" + product.get(0).getName());
+        holder.rdBtnDiningRoom.setText("" + product.get(1).getName());
+        holder.rdBtnBedRoom.setText("" + product.get(2).getName());
 
         holder.radioGrpChecked.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -70,8 +69,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
                             holder.rdBtnLivingRoom.setTextColor(Color.WHITE);
                             holder.rdBtnDiningRoom.setTextColor(Color.GRAY);
                             holder.rdBtnBedRoom.setTextColor(Color.GRAY);
-                            Picasso.with(context).load(section.getImage()).into(holder.ivForLivingDiningBedRoom);
-
+                            Picasso.with(context).load(product.get(0).getImage()).error(R.drawable.img_default_banner).into(holder.ivForLivingDiningBedRoom);
                         }
                         break;
                     case R.id.rdBtnDiningRoom:
@@ -79,7 +77,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
                             holder.rdBtnLivingRoom.setTextColor(Color.GRAY);
                             holder.rdBtnDiningRoom.setTextColor(Color.WHITE);
                             holder.rdBtnBedRoom.setTextColor(Color.GRAY);
-                            Picasso.with(context).load(section.getImage()).into(holder.ivForLivingDiningBedRoom);
+                            Picasso.with(context).load(product.get(1).getImage()).error(R.drawable.place_holder_imag).into(holder.ivForLivingDiningBedRoom);
 
                         }
                         break;
@@ -88,7 +86,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
                             holder.rdBtnLivingRoom.setTextColor(Color.GRAY);
                             holder.rdBtnDiningRoom.setTextColor(Color.GRAY);
                             holder.rdBtnBedRoom.setTextColor(Color.WHITE);
-                            Picasso.with(context).load(section.getImage()).into(holder.ivForLivingDiningBedRoom);
+                            Picasso.with(context).load(product.get(2).getImage()).error(R.drawable.img_default_banner).into(holder.ivForLivingDiningBedRoom);
 
                         }
                         break;
@@ -100,7 +98,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return R.layout.item_section;
+        return bentBasicHomeResponse.getSections().size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.multidex.BuildConfig;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -72,16 +71,17 @@ public class MainActivity extends AppCompatActivity {
     private void onservice() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("ApiToken" +"uhUQGZPJhuwQ3zxEQkkIkBQZ9ekgQ").addConverterFactory(GsonConverterFactory.create()).build();
+                .baseUrl("https://demoapp.bentchair.com/api/v1/bent-basic-home/").addConverterFactory(GsonConverterFactory.create()).build();
         ApiInterface client = retrofit.create(ApiInterface.class);
         Call<BentBasicHomeResponse> bentBasicHomeResponseCall = client.getData("uhUQGZPJhuwQ3zxEQkkIkBQZ9ekgQ");
         bentBasicHomeResponseCall.enqueue(new Callback<BentBasicHomeResponse>() {
             @Override
             public void onResponse(Call<BentBasicHomeResponse> call, Response<BentBasicHomeResponse> response) {
                 if (response != null && response.code() == 200 && response.body() != null) {
-                    setTopBanner(response);
-                    setIntroduction(response);
-                    setSectionAdapter();
+                    basicHomeResponse=response.body();
+                    setTopBanner(basicHomeResponse);
+                    setIntroduction(basicHomeResponse);
+                    setSectionAdapter(basicHomeResponse);
                     setAdditionAdapter();
                 } else {
                     Toast.makeText(mActivity, "response failed", Toast.LENGTH_SHORT).show();
@@ -95,15 +95,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-    private void setTopBanner(Response<BentBasicHomeResponse> response) {
+    private void setTopBanner(BentBasicHomeResponse response) {
         if (response != null) {
-            Picasso.with(getApplicationContext()).load(basicHomeResponse.getBanner()).into(ivBentBasicBG);
+            Picasso.with(getApplicationContext()).load(basicHomeResponse.getBanner())
+                    .error(R.drawable.place_holder_imag).into(ivBentBasicBG);
         }
     }
 
-    private void setIntroduction(Response<BentBasicHomeResponse> response) {
+    private void setIntroduction(BentBasicHomeResponse response) {
         if (response != null) {
             tvIntroHeading.setText("" + basicHomeResponse.getTitle());
             tvIntroDescription.setText("" + basicHomeResponse.getDescription());
@@ -119,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
         //additionAdapter.setOnItemClickListener(this);
     }
 
-    private void setSectionAdapter() {
-        sectionAdapter = new SectionAdapter(getApplicationContext(), sectionList, productList);
+    private void setSectionAdapter(BentBasicHomeResponse sections) {
+        sectionAdapter = new SectionAdapter(sections,getApplicationContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvSection.setLayoutManager(layoutManager);
         rvSection.setItemAnimator(new DefaultItemAnimator());
